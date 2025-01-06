@@ -26,9 +26,9 @@ using CSV
 using Statistics
 
 # Load the dataset of the Penn World Tables (pwt) :
-# cd(dirname(pathof(Replication_Monge_et_al_2019)))
+cd(dirname(pathof(Replication_Monge_et_al_2019)))
 # splitdir(pwd())[2]
-# cd("data")
+cd("data")
 pwt_data = DataFrame(load("src/data/pwt80.dta"))
 # We save the dimensions for later checks : 
 initial_size = size(pwt_data)

@@ -10,14 +10,7 @@ To install the package, you can enter the pkg mode in Julia by pressing `]`, or 
 
 ```
 julia> using Pkg
-julia> Pkg.add("https://www.github.com/Paulogcd/Replication_Monge_et_al_2019")
-```
-
-To visualise the replicated results, you can first activate the environment, and then use the `run()` function :
-
-```
-julia> Pkg.activate(".")
-julia> using Replication_Monge_et_al_2019
+julia> Pkg.add(url = "https://www.github.com/Paulogcd/Replication_Monge_et_al_2019.jl")
 ```
 
 # Two main functions : 
@@ -25,8 +18,9 @@ julia> using Replication_Monge_et_al_2019
 The two main functions of the package are : 
 
 ```
-# Will produce all the replicated results in an output folder : 
+julia> using Replication_Monge_et_al_2019
 
+# Will produce all the replicated results in an output folder : 
 julia> run()
 
 # Will delete all the produced results. 

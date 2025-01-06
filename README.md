@@ -18,8 +18,10 @@ You can go to its dedicated webpage [here](https://www.paulogcd.com/Replication_
 
 ```
 using Pkg
-Pkg.activate(".")
-using Replicaion_Monge_et_al_2019.jl # The precompilation might ake some time (24 seconds on Mac M1)
+
+Pkg.add(url = "https://www.paulogcd.com/Replication_Monge_et_al_2019.jl/")
+
+using Replicaion_Monge_et_al_2019.jl # The precompilation might take some time (24 seconds on Mac Mini M1)
 
 # to get all the results inside a 'output' folder : 
 run()
@@ -66,7 +68,7 @@ We obtain :
 
 ![Tests](./tests.png)
 
-And when running 
+And when going into the home folder of the package, and running 
 
 ```
 include("Replication_Monge_et_al_2019.extensive_test")
