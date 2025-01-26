@@ -53,7 +53,7 @@ All of the obtained figures and tables are described and discussed in the packag
 # Tests procedure and results 
 
 We used the `Test` package to test the quality of the replicated data, and compare it with the data from the Replication package. 
-In this sense, although the tests are failing in the GitHub repository, it does no mean that we did not manage to obtain similar results to the authors. 
+In this sense, although some extensive tests are failing, it does no mean that we did not manage to obtain similar results to the authors. 
 
 Once we are in the folder of the repository, we can run the replication tests.
 
@@ -65,7 +65,7 @@ Pkg.test("Replication_Monge_et_al_2019")
 
 We obtain : 
 
-![Tests](./tests.png)
+![Tests](./tests_2.png)
 
 And when running 
 

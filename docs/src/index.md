@@ -20,7 +20,7 @@ julia> Pkg.activate(".")
 julia> using Replication_Monge_et_al_2019
 ```
 
-# Two main functions : 
+## Two main functions : 
 
 The two main functions of the package are : 
 
@@ -35,9 +35,9 @@ julia> run()
 julia> delete_all()
 ```
 
-# Comments on replication results : 
+## Comments on replication results : 
 
-## Data treatment
+### Data treatment
 
 The main challenge of this project was to reproduce the results of the paper (tables and graphs) without the original code. Indeed, the replication package is only composed of 4 source datasets (pwt80.dta;  timber\_and\_subsoil\_rent\_input.dta; crop\_land\_rent\_input.dta; pasture\_land\_rent\_input.dta), and a do-file (build\_phiNR.do) that merges these datasets into a final one (MSS\_NRshares.dta)  in order to construct the natural resources shares of output. The ReadMe only gives brief information on how to recreate “MSS\_NRshares” from these files, and is quite unhelpful to reproduce anything else. Thus, this project can be decomposed in two parts. First, we recreate the data from the 4 source datasets, basing ourselves on the code provided in “build\_phiNR.do”. Secondly,  we try to reproduce results from the paper without anything to base ourselves on except from the methodology descriptions in the paper and our understanding of the data.
 
@@ -55,33 +55,34 @@ Lastly, we clean our data to obtain the equivalent of “MSS\_NRshares.dta” (l
 
 The main challenge we faced during the data work has obviously to do with the software differences, more specifically regarding the merging and computing methods. In some cases, when computing values for rows with only missing values, the stata command would attribute the value 0 while Julia computed it as missing. We had to be careful with that kind of issues throughout the whole project. Last but not least, it is more than likely that there are slight differences between our final output and the final data provided by the paper because of differences in rounding methods between Julia and Stata. That is why our test result for the final data part, all our values are approximately equal to those in “MSS\_NRshares.dta” but not always absolutely the same.
 
-## Figures and Tables 
+### Figures and Tables 
 
 This section focuses on the replication of tables and figures from sections II and III.Overall, we were unable to precisely replicate the findings of the paper. We suspectthat this is largely driven by the fact that the replication files provided by the authorsonly detail how to compute the by-country output share of natural resources(MSS/_Nrshares.dta). However, no code or further information is provided on how toobtain the tables and figures presented in the paper, which we attempted to replicatebased on our understanding of their methodology. Hence, if the authors made further assumptions or undertook additional data-cleaning before plotting, this could explainthe discrepancy between our results and theirs.
 
-### Figure 1
+#### Figure 1
 
 We calculate the number of workers as pop*labsh, then we calculate GDP per worker as cdgdpo divided by this number. The result is close to what is shown in the paper. However, we encounter issues when using the fit function to compute the trendline, possibly drive by a lack of variation due to the large values of GDP and the small values of output shares. The authors do not mention any normalization, so we choose to not make any further modifications to the data.
 
-### Figure 2
+#### Figure 2
+
 We calculate GDP quartiles using Julia’s quartile function. However, we cannot replicate the numbers as shown in the paper.
 
-### Figure 3
+#### Figure 3
 
 We can only compute the red elements of this figure as the blue datapoints follow the methodology followed by Casella and Feyrer (2007). While we can calculate the natural resource share using Equation (13), the methodology to compute their estimates of natural resource shares of output is not available in the replication material. Hence, we restrict ourselves to the estimates provided by the authors and finnd similar results.
 
-## Figure 4 and Table 3
+#### Figure 4 and Table 3
 
 QMPK and VMPK are computed following the formulae outlines in sections II and III of the paper. While our estimates are close, we observe minor discrepancies in percentile ranges. Since we cannot verify our computation of MPKs, if the authors undertook further data-cleaning or any additional steps not outlined in the paper, this would explain the divergence in our estimates. They remain, however, reasonably close.
 
-## Tables 4 and 5
+#### Tables 4 and 5
 
 It is not possible to reconstruct these tables from the replication files and none of thedatasets provided by the authors include Sachs and Werner’s (1995) opennessindicator. To attempt the replication nonetheless, we used the SW we could find(available here: [https://www.bristol.ac.uk/depts/Economics/Growth/sachs.htm](https://www.bristol.ac.uk/depts/Economics/Growth/sachs.htm)), whichis called `open.csv` in our output folder. We find that the number of obervations doesnot match the ones reported by the authors, so this is likely not the same data theyused. Hence, our results will naturally be different.
 
 
-# Comments on the Tests
+## Comments on the Tests
 
-# Tests procedure and results 
+### Tests procedure and results 
 
 We used the `Test` package to test the quality of the replicated data, and compare it with the data from the Replication package. 
 In this sense, although the tests are failing in the GitHub repository, it does no mean that we did not manage to obtain similar results to the authors. 
@@ -96,7 +97,7 @@ Pkg.test("Replication_Monge_et_al_2019")
 
 We obtain : 
 
-![Tests](./tests.png)
+![Tests](./tests_2.png)
 
 And when running 
 
