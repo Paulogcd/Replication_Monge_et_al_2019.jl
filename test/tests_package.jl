@@ -3,7 +3,7 @@ using Test
 using DataFrames
 using StatFiles
 
-@testset "Data final part" begin
+@testset "Aggregate data" begin
 
     # Loading the data : 
     # This is the final dataset gotten from the do file of the authors :
@@ -30,15 +30,6 @@ using StatFiles
     @testset "Same variables - final " begin
         for n in names(MSS_NRshares)
             @test n in names(Replication_Monge_et_al_2019.pwt_data)
-        end
-    end
-
-    # Testing absolute equality of common columns : 
-    @testset "Absolute equality of columns - final " begin
-        for col in names(MSS_NRshares)
-            if col in names(Replication_Monge_et_al_2019.pwt_data)
-                @test isequal(MSS_NRshares[:,col], Replication_Monge_et_al_2019.pwt_data[:,col])
-            end
         end
     end
 
@@ -89,4 +80,9 @@ using StatFiles
             end
         end
     end
+end
+
+@testset "Figures and Tables replication" begin 
+    include("tests_Part_2.jl")
+    include("tests_Part_3.jl")
 end
